@@ -153,8 +153,6 @@ export default function Skills() {
             gap={64}
             hoverSpeed={0}
             scaleOnHover
-            fadeOut
-            fadeOutColor="#000000"
             ariaLabel="Technology Logo Loop"
           />
         </div>
