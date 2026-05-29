@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Space_Grotesk } from 'next/font/google'
 import './globals.css'
 import { SpotlightCursor } from '@/components/ui/spotlight-cursor'
 import ScrollProgress from '@/components/effects/ScrollProgress'
@@ -10,6 +10,12 @@ const inter = Inter({
   variable: '--font-inter',
   display: 'swap',
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-space',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -46,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
       <head>
         <link rel="preload" href="/card.glb" as="fetch" crossOrigin="anonymous" />
         <link rel="preload" href="/parul-university-logo.png" as="image" />

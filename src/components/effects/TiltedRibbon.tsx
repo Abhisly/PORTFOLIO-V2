@@ -66,14 +66,18 @@ export default function TiltedRibbon() {
 
   if (!mounted) return null
 
-  const ribbonText = Array.from({ length: 12 }, (_, index) => (
-    <span key={index} className="inline-flex items-center gap-12 pr-12">
-      <span className="ribbon-text-primary text-[rgba(255,255,255,0.8)] font-semibold">FULL STACK DEVELOPER</span>
-      <span className="ribbon-text-accent text-[#4ade80] font-bold">|</span>
-      <span className="ribbon-text-secondary text-[rgba(255,255,255,0.45)] font-normal">INTELLIGENT SYSTEMS</span>
-      <span className="ribbon-text-accent text-[#4ade80]/80 font-mono">{"//"}</span>
-      <span className="ribbon-text-primary text-[rgba(255,255,255,0.8)] font-semibold">AI & INTERACTIVE WEBGL</span>
-      <span className="ribbon-text-accent text-[#4ade80] font-bold">::</span>
+  const ribbonText = Array.from({ length: 8 }, (_, index) => (
+    <span key={index} className="inline-flex items-center gap-12 md:gap-16 pr-12 md:pr-16">
+      <span className="ribbon-text-primary text-[rgba(255,255,255,0.9)] font-display font-bold tracking-[0.15em] text-2xl md:text-3xl uppercase">FULL STACK DEVELOPER</span>
+      <span className="ribbon-text-accent text-[#4ade80] font-bold text-3xl md:text-4xl">✦</span>
+      <span className="ribbon-text-secondary text-[rgba(255,255,255,0.55)] font-display font-semibold tracking-[0.1em] text-xl md:text-2xl uppercase">DEVOPS ENGINEER</span>
+      <span className="ribbon-text-accent text-[#4ade80]/80 font-mono font-bold text-3xl md:text-4xl">{"//"}</span>
+      <span className="ribbon-text-primary text-[rgba(255,255,255,0.9)] font-display font-bold tracking-[0.15em] text-2xl md:text-3xl uppercase">GEN AI ENGINEER</span>
+      <span className="ribbon-text-accent text-[#4ade80] font-bold text-4xl md:text-5xl">⬡</span>
+      <span className="ribbon-text-secondary text-[rgba(255,255,255,0.55)] font-display font-semibold tracking-[0.1em] text-xl md:text-2xl uppercase">PROMPT ENGINEER</span>
+      <span className="ribbon-text-accent text-[#4ade80] font-bold text-3xl md:text-4xl">::</span>
+      <span className="ribbon-text-primary text-[rgba(255,255,255,0.9)] font-display font-bold tracking-[0.15em] text-2xl md:text-3xl uppercase">MERN STACK DEVELOPER</span>
+      <span className="ribbon-text-accent text-[#4ade80]/90 font-mono font-bold text-3xl md:text-4xl">{'< />'}</span>
     </span>
   ))
 
