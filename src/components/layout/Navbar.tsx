@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimatedThemeToggler } from '@/components/ui/animated-theme-toggler'
+import { ResumeModal } from '@/components/ui/resume-modal'
 
 const navLinks = [
   { label: 'About', href: '#about' },
@@ -17,6 +18,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [showResume, setShowResume] = useState(true)
   const [showTheme, setShowTheme] = useState(true)
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -120,19 +122,18 @@ export default function Navbar() {
       <div className="fixed top-6 md:top-8 right-8 md:right-14 z-[10001] hidden md:flex items-center gap-6 pointer-events-auto">
         <AnimatePresence>
           {showResume && (
-            <motion.a
+            <motion.button
               key="floating-resume"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
               transition={{ duration: 0.3 }}
-              href="/resume.pdf"
-              download="Abhi_Venkat_Sai_Resume.pdf"
+              onClick={() => setIsResumeModalOpen(true)}
               className="text-[0.9rem] md:text-[1.05rem] font-semibold tracking-[0.18em] uppercase text-white/35 hover:text-white transition-colors duration-200 font-mono nav-resume"
               data-cursor
             >
               Resume
-            </motion.a>
+            </motion.button>
           )}
         </AnimatePresence>
 
@@ -173,16 +174,15 @@ export default function Navbar() {
                 {link.label}
               </motion.button>
             ))}
-            <motion.a
+            <motion.button
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.36 }}
-              href="/resume.pdf"
-              download
+              onClick={() => setIsResumeModalOpen(true)}
               className="btn-accent"
             >
-              Download Resume
-            </motion.a>
+              View Resume
+            </motion.button>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -193,6 +193,8 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <ResumeModal isOpen={isResumeModalOpen} onClose={() => setIsResumeModalOpen(false)} />
     </>
   )
 }
