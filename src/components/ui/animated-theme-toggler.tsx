@@ -16,22 +16,9 @@ export const AnimatedThemeToggler = ({ className }: AnimatedThemeTogglerProps) =
   // Default to dark mode (lightMode = false) initially to match server-side rendering
   const [lightMode, setLightMode] = useState(false)
 
-  // On mount: enforce dark as default, only apply light if explicitly saved
+  // On mount: sync theme state from document.documentElement and listen for changes
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme")
-    const shouldBeLight = savedTheme === "light"
-
-    if (shouldBeLight) {
-      document.documentElement.classList.add("light")
-      setLightMode(true)
-    } else {
-      // Ensure light class is removed (enforce dark default)
-      document.documentElement.classList.remove("light")
-      setLightMode(false)
-      if (!savedTheme) {
-        localStorage.setItem("theme", "dark")
-      }
-    }
+    setLightMode(document.documentElement.classList.contains("light"))
 
     const syncTheme = () =>
       setLightMode(document.documentElement.classList.contains("light"))

@@ -28,9 +28,7 @@ export default function Loader({ onComplete }: LoaderProps) {
         requestAnimationFrame(tick)
       } else {
         setPhase('done')
-        void preloadLanyardAssets().finally(() => {
-          setTimeout(onComplete, 200)
-        })
+        setTimeout(onComplete, 200)
       }
     }
 

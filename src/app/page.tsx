@@ -25,6 +25,24 @@ export default function Home() {
     void preloadLanyardAssets()
   }, [])
 
+  // Sync theme only when loaded becomes true to prevent light-theme flash during loader
+  useEffect(() => {
+    if (loaded) {
+      const savedTheme = localStorage.getItem('theme')
+      if (savedTheme === 'light') {
+        document.documentElement.classList.add('light')
+      } else {
+        document.documentElement.classList.remove('light')
+        if (!savedTheme) {
+          localStorage.setItem('theme', 'dark')
+        }
+      }
+    } else {
+      // Force dark mode (black background) during loading
+      document.documentElement.classList.remove('light')
+    }
+  }, [loaded])
+
   const handleLoaderComplete = useCallback(() => {
     setLoaded(true)
   }, [])

@@ -4,10 +4,11 @@ import { useRef, useState, useEffect } from 'react'
 import { motion, MotionValue, useScroll, useTransform } from 'framer-motion'
 
 function useIsLight() {
-  const [isLight, setIsLight] = useState(() =>
-    typeof document !== 'undefined' && document.documentElement.classList.contains('light')
-  )
+  const [isLight, setIsLight] = useState(false)
+
   useEffect(() => {
+    setIsLight(document.documentElement.classList.contains('light'))
+
     const obs = new MutationObserver(() =>
       setIsLight(document.documentElement.classList.contains('light'))
     )

@@ -96,6 +96,18 @@ export default function Projects() {
     }
   }, [])
 
+  // Refresh GSAP ScrollTrigger when Projects height changes to prevent subsequent sections from pinning early
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const timer = setTimeout(() => {
+        import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+          ScrollTrigger.refresh()
+        })
+      }, 100)
+      return () => clearTimeout(timer)
+    }
+  }, [sectionHeight])
+
   const displayIndex =
     activeIndex === 0
       ? '00'

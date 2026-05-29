@@ -160,12 +160,8 @@ export default function Certifications() {
         }}
       />
 
-      {/* Standalone section header — renders BEFORE the pinned gallery */}
-      <div className="relative z-20 pt-24 sm:pt-32 pb-8 sm:pb-12 bg-black">
-        {sectionHeader}
-      </div>
-
       <RadialScrollGallery
+        header={sectionHeader}
         footer={sectionFooterMetadata}
         baseRadius={580}
         mobileRadius={260}
