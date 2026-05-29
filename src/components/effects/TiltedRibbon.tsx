@@ -13,38 +13,36 @@ export default function TiltedRibbon() {
   const { scrollY } = useScroll()
 
   const [vh, setVh] = useState(900)
-  useEffect(() => {
-    setVh(window.innerHeight)
-    const handleResize = () => setVh(window.innerHeight)
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
-  // Drive the ribbon through Hero -> About, then wipe off
-  // right after About's text reveal completes (≈82% through About).
-  const heroRef = useRef<HTMLElement | null>(null)
-  const aboutRef = useRef<HTMLElement | null>(null)
   const [heroEnd, setHeroEnd] = useState(900)
+  const [aboutRange, setAboutRange] = useState<[number, number]>([0, 1000])
 
   useEffect(() => {
-    heroRef.current = document.getElementById('hero') as HTMLElement | null
-    aboutRef.current = document.getElementById('about') as HTMLElement | null
+    const heroEl = document.getElementById('hero')
+    const aboutEl = document.getElementById('about')
 
     const measure = () => {
-      const heroEl = heroRef.current
-      const aboutEl = aboutRef.current
-      if (!heroEl || !aboutEl) return
+      const vhVal = window.innerHeight
+      setVh(vhVal)
 
-      const heroTop = heroEl.getBoundingClientRect().top + window.scrollY
+      if (heroEl) {
+        const heroTop = heroEl.getBoundingClientRect().top + window.scrollY
+        setHeroEnd(heroTop + heroEl.offsetHeight)
+      }
 
-      setHeroEnd(heroTop + heroEl.offsetHeight)
+      if (aboutEl) {
+        const aboutTop = aboutEl.getBoundingClientRect().top + window.scrollY
+        const aboutHeight = aboutEl.offsetHeight
+        // Start: top of #about hits top of viewport
+        // End: bottom of #about hits bottom of viewport
+        setAboutRange([aboutTop, aboutTop + aboutHeight - vhVal])
+      }
     }
 
     measure()
 
     const ro = new ResizeObserver(() => measure())
-    if (heroRef.current) ro.observe(heroRef.current)
-    if (aboutRef.current) ro.observe(aboutRef.current)
+    if (heroEl) ro.observe(heroEl)
+    if (aboutEl) ro.observe(aboutEl)
     window.addEventListener('resize', measure)
 
     return () => {
@@ -57,10 +55,7 @@ export default function TiltedRibbon() {
   // - sits near the bottom of Hero and slides into place
   // - stays during About's word reveal (ends at ~82%)
   // - then moves upward with scroll and fades out by the end of About
-  const { scrollYProgress: aboutProgress } = useScroll({
-    target: aboutRef,
-    offset: ['start start', 'end end'],
-  })
+  const aboutProgress = useTransform(scrollY, aboutRange, [0, 1])
 
   const heroY = useTransform(scrollY, [0, heroEnd], [vh * 0.95, 0], { clamp: true })
   const afterTextY = useTransform(aboutProgress, [0, 0.82, 1], [0, 0, -900], { clamp: true })
