@@ -149,6 +149,7 @@ export default function Certifications() {
     <section
       id="certifications"
       className="relative overflow-hidden bg-black border-y border-white/[0.04]"
+      style={{ zIndex: 30 }}
     >
       {/* Background radial gradient */}
       <div
@@ -159,8 +160,12 @@ export default function Certifications() {
         }}
       />
 
+      {/* Standalone section header — renders BEFORE the pinned gallery */}
+      <div className="relative z-20 pt-24 sm:pt-32 pb-8 sm:pb-12 bg-black">
+        {sectionHeader}
+      </div>
+
       <RadialScrollGallery
-        header={sectionHeader}
         footer={sectionFooterMetadata}
         baseRadius={580}
         mobileRadius={260}
