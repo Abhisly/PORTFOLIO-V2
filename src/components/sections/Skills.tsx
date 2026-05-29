@@ -3,6 +3,30 @@
 import { useRef } from 'react'
 import { motion, MotionValue, useScroll, useTransform, useTime } from 'framer-motion'
 import { fadeUp, viewport } from '@/lib/animations'
+import LogoLoop from '@/components/ui/LogoLoop'
+import {
+  SiNextdotjs,
+  SiReact,
+  SiTypescript,
+  SiJavascript,
+  SiTailwindcss,
+  SiFramer,
+  SiGreensock,
+  SiHtml5,
+  SiCss,
+  SiPython,
+  SiNodedotjs,
+  SiFlask,
+  SiSpringboot,
+  SiMysql,
+  SiMongodb,
+  SiDocker,
+  SiKubernetes,
+  SiGit,
+  SiGithub,
+} from 'react-icons/si'
+import { FaJava } from 'react-icons/fa'
+import { VscVscode } from 'react-icons/vsc'
 
 const rows = [
   {
@@ -36,6 +60,30 @@ const rows = [
       'Algorithms & DSA',
     ],
   },
+]
+
+const techLogos = [
+  { node: <SiNextdotjs />, title: 'Next.js', href: 'https://nextjs.org' },
+  { node: <SiReact />, title: 'React', href: 'https://react.dev' },
+  { node: <SiTypescript />, title: 'TypeScript', href: 'https://www.typescriptlang.org' },
+  { node: <SiTailwindcss />, title: 'Tailwind CSS', href: 'https://tailwindcss.com' },
+  { node: <SiJavascript />, title: 'JavaScript', href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
+  { node: <SiHtml5 />, title: 'HTML5', href: 'https://developer.mozilla.org/en-US/docs/Web/HTML' },
+  { node: <SiCss />, title: 'CSS3', href: 'https://developer.mozilla.org/en-US/docs/Web/CSS' },
+  { node: <SiNodedotjs />, title: 'Node.js', href: 'https://nodejs.org' },
+  { node: <SiPython />, title: 'Python', href: 'https://www.python.org' },
+  { node: <SiFlask />, title: 'Flask', href: 'https://flask.palletsprojects.com' },
+  { node: <SiDocker />, title: 'Docker', href: 'https://www.docker.com' },
+  { node: <SiKubernetes />, title: 'Kubernetes', href: 'https://kubernetes.io' },
+  { node: <SiGit />, title: 'Git', href: 'https://git-scm.com' },
+  { node: <SiGithub />, title: 'GitHub', href: 'https://github.com' },
+  { node: <VscVscode />, title: 'VS Code', href: 'https://code.visualstudio.com' },
+  { node: <FaJava />, title: 'Java', href: 'https://www.java.com' },
+  { node: <SiSpringboot />, title: 'Spring Boot', href: 'https://spring.io/projects/spring-boot' },
+  { node: <SiMysql />, title: 'MySQL', href: 'https://www.mysql.com' },
+  { node: <SiMongodb />, title: 'MongoDB', href: 'https://www.mongodb.com' },
+  { node: <SiGreensock />, title: 'GSAP', href: 'https://gsap.com' },
+  { node: <SiFramer />, title: 'Framer Motion', href: 'https://www.framer.com/motion/' },
 ]
 
 export default function Skills() {
@@ -95,6 +143,21 @@ export default function Skills() {
         {rows.map((row, rowIndex) => (
           <TechTicker key={rowIndex} {...row} rowIndex={rowIndex} scrollY={scrollY} />
         ))}
+
+        <div className="pt-4">
+          <LogoLoop
+            logos={techLogos}
+            speed={60}
+            direction="left"
+            logoHeight={42}
+            gap={64}
+            hoverSpeed={0}
+            scaleOnHover
+            fadeOut
+            fadeOutColor="#000000"
+            ariaLabel="Technology Logo Loop"
+          />
+        </div>
       </div>
     </section>
   )
