@@ -63,7 +63,25 @@ export default function About() {
     >
       <div className="sticky top-0 h-screen overflow-hidden bg-black about-sticky">
         <div className="w-full h-screen flex flex-col md:flex-row items-center justify-between px-6 md:px-16 lg:px-24 py-16 gap-12 relative z-10">
-          <div className="hidden md:block w-[30%]" />
+          <div className="hidden md:block w-[30%] pt-2 sm:pt-4">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="inline-flex items-center gap-3 mb-4">
+                <div className="h-px w-8 bg-[#4ade80]" />
+                <span className="font-mono text-xs tracking-widest uppercase text-white/60">Introduction</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight mt-2">
+                About{' '}
+                <em className="font-light text-white/40" style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
+                  Me
+                </em>
+              </h2>
+            </motion.div>
+          </div>
 
           <div className="w-full md:w-[65%] flex flex-col justify-center">
             <p className="font-sans font-normal text-3xl md:text-4xl lg:text-[2.8rem] leading-[1.35] md:leading-[1.35] text-white tracking-tight flex flex-wrap gap-x-2 gap-y-4">

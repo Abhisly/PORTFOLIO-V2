@@ -275,11 +275,12 @@
 .hp-project-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
+  gap: 0.6rem;
   color: rgba(255, 255, 255, 0.55);
   text-decoration: none;
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   transition: color 0.25s ease, transform 0.25s ease;
 }

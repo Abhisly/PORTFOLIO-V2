@@ -68,12 +68,12 @@ export default function TiltedRibbon() {
 
   const ribbonText = Array.from({ length: 12 }, (_, index) => (
     <span key={index} className="inline-flex items-center gap-12 pr-12">
-      <span className="text-white/80 font-semibold">FULL STACK DEVELOPER</span>
-      <span className="text-[#4ade80] font-bold">|</span>
-      <span className="text-white/45 font-normal">INTELLIGENT SYSTEMS</span>
-      <span className="text-[#4ade80]/80 font-mono">{"//"}</span>
-      <span className="text-white/80 font-semibold">AI & INTERACTIVE WEBGL</span>
-      <span className="text-[#4ade80] font-bold">::</span>
+      <span className="ribbon-text-primary text-white/80 font-semibold">FULL STACK DEVELOPER</span>
+      <span className="ribbon-text-accent text-[#4ade80] font-bold">|</span>
+      <span className="ribbon-text-secondary text-white/45 font-normal">INTELLIGENT SYSTEMS</span>
+      <span className="ribbon-text-accent text-[#4ade80]/80 font-mono">{"//"}</span>
+      <span className="ribbon-text-primary text-white/80 font-semibold">AI & INTERACTIVE WEBGL</span>
+      <span className="ribbon-text-accent text-[#4ade80] font-bold">::</span>
     </span>
   ))
 

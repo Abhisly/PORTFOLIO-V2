@@ -204,7 +204,7 @@ export default function Projects() {
                             data-cursor
                           >
                             <span>GitHub</span>
-                            <ArrowUpRight size={15} strokeWidth={2} />
+                            <ArrowUpRight size={18} strokeWidth={2} />
                           </a>
                         )}
                         {project.live && (
@@ -216,7 +216,7 @@ export default function Projects() {
                             data-cursor
                           >
                             <span>Live Site</span>
-                            <ArrowUpRight size={15} strokeWidth={2} />
+                            <ArrowUpRight size={18} strokeWidth={2} />
                           </a>
                         )}
                       </div>
