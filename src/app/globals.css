@@ -1,0 +1,750 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@import './projects-horizontal.css';
+@import './contact.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+:root {
+  --bg: #050505;
+  --bg-card: #0d0d0d;
+  --bg-card-hover: #141414;
+  --border: rgba(255, 255, 255, 0.07);
+  --border-hover: rgba(255, 255, 255, 0.15);
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.5);
+  --text-muted: rgba(255, 255, 255, 0.25);
+  --accent: #4ade80;
+  --accent-dim: rgba(74, 222, 128, 0.15);
+  --accent-glow: rgba(74, 222, 128, 0.3);
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto;
+  overflow-x: clip;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(74, 222, 128, 0.2); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(74, 222, 128, 0.4); }
+
+::selection { background: rgba(74, 222, 128, 0.2); color: #fff; }
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+.heading-display {
+  font-size: clamp(3.5rem, 7vw, 8.5rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+.heading-xl {
+  font-size: clamp(2.5rem, 5.5vw, 6.5rem);
+  font-weight: 800;
+  line-height: 0.93;
+  letter-spacing: -0.035em;
+}
+
+.heading-lg {
+  font-size: clamp(2rem, 4vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.heading-md {
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.label-mono {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+.label-accent {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.text-body {
+  font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+  line-height: 1.75;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+/* ============================================
+   CURSOR
+   ============================================ */
+.cursor-dot {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px var(--accent-glow);
+  transition: width 0.2s ease, height 0.2s ease;
+}
+
+.cursor-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(74, 222, 128, 0.35);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.cursor-ring.hovering {
+  width: 56px;
+  height: 56px;
+  background: rgba(74, 222, 128, 0.05);
+  border-color: var(--accent);
+}
+
+/* ============================================
+   SCROLL PROGRESS
+   ============================================ */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), rgba(74, 222, 128, 0.6));
+  z-index: 10000;
+  transform-origin: left;
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* ============================================
+   MARQUEE
+   ============================================ */
+.marquee-outer {
+  overflow: hidden;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.marquee-track {
+  display: inline-flex;
+  gap: 0;
+  animation: marqueeLeft 28s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track.reverse {
+  animation: marqueeRight 32s linear infinite;
+}
+
+.marquee-text {
+  display: inline-block;
+  font-size: clamp(5rem, 10vw, 12rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.06);
+  line-height: 1;
+  text-transform: uppercase;
+  padding-right: 2rem;
+}
+
+.marquee-text.dimmer {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.04);
+}
+
+@keyframes marqueeLeft {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+/* ============================================
+   ACCENT LINE
+   ============================================ */
+.accent-line {
+  height: 1px;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* ============================================
+   GLASS CARD
+   ============================================ */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+}
+
+.glass-hover {
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(74, 222, 128, 0.2);
+  box-shadow: 0 0 30px rgba(74, 222, 128, 0.05);
+}
+
+/* ============================================
+   TECH PILL / TAG
+   ============================================ */
+.tech-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.2rem 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.tech-tag:hover {
+  color: var(--accent);
+  border-color: rgba(74, 222, 128, 0.3);
+}
+
+/* ============================================
+   SECTION LABEL
+   ============================================ */
+.section-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ============================================
+   GLOW BUTTON
+   ============================================ */
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  background: var(--accent);
+  color: #000;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 0 20px var(--accent-glow);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-accent:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 35px var(--accent-glow), 0 0 60px rgba(74, 222, 128, 0.15);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  text-transform: uppercase;
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 20px rgba(74, 222, 128, 0.1);
+}
+
+/* ============================================
+   INPUT
+   ============================================ */
+.input-field {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  resize: none;
+}
+
+.input-field::placeholder { color: rgba(255,255,255,0.2); }
+
+.input-field:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(74, 222, 128, 0.08), 0 0 20px rgba(74, 222, 128, 0.06);
+}
+
+/* ============================================
+   HIDE DEFAULT CURSOR (Removed for Spotlight)
+   ============================================ */
+
+@media (hover: none) {
+  .cursor-dot, .cursor-ring { display: none; }
+}
+
+/* ============================================
+   LENIS
+   ============================================ */
+html.lenis { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+
+/* ============================================
+   SKILLS FILTER SIDEBAR
+   ============================================ */
+.skill-filter-btn {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  text-align: left;
+  width: 100%;
+  background: transparent;
+  border: none;
+}
+
+.skill-filter-btn:hover { color: var(--text-primary); }
+.skill-filter-btn.active {
+  color: var(--accent);
+  background: rgba(74, 222, 128, 0.08);
+}
+
+/* ============================================
+   SKILL ICON CARD
+   ============================================ */
+.skill-icon-card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 100px;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.skill-icon-card:hover {
+  background: rgba(12, 12, 12, 0.6);
+  border-color: rgba(74, 222, 128, 0.3);
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(74, 222, 128, 0.02);
+}
+
+.skill-icon-card:hover .skill-icon-label { color: #ffffff; }
+
+.skill-icon-label {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.3s ease;
+  text-align: center;
+  transition: color 0.2s ease;
+}
+
+/* ============================================
+   TIMELINE
+   ============================================ */
+.timeline-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--accent-glow), 0 0 24px rgba(74, 222, 128, 0.2);
+  flex-shrink: 0;
+}
+
+/* ============================================
+   FLOAT ANIMATION
+   ============================================ */
+.float-anim {
+  animation: floatAnim 6s ease-in-out infinite;
+}
+
+@keyframes floatAnim {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+
+
+/* ============================================
+   GRADIENT ORBS
+   ============================================ */
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(20px, -30px) scale(1.1); }
+  66% { transform: translate(-15px, 15px) scale(0.9); }
+}
+
+/* ============================================
+   LOADER
+   ============================================ */
+.loader-progress-track {
+  width: 200px;
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.loader-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(74,222,128,0.5), var(--accent));
+  transform-origin: left;
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* ============================================
+   TECHSTACK MARQUEE
+   ============================================ */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--speed, 30s) linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation: marquee-reverse var(--speed, 30s) linear infinite;
+}
+
+.animate-marquee-reverse:hover {
+  animation-play-state: paused;
+}
+
+/* Lanyard: hero only — scrolls with hero, overlays ALL hero layers */
+.lanyard-hero-slot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  z-index: 9999;        /* above everything in the hero */
+  pointer-events: none;
+}
+
+.lanyard-hero-slot .lanyard-wrapper {
+  position: relative;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  pointer-events: auto;
+}
+
+.lanyard-hero-slot canvas {
+  position: relative;
+  z-index: 9999;
+}
+
+/* ============================================
+   ABOUT DOSSIER SCANNER EFFECT
+   ============================================ */
+@keyframes scannerLoop {
+  0% { top: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.animate-scanner-loop {
+  position: absolute;
+  animation: scannerLoop 4s ease-in-out infinite;
+}
+
+/* ============================================
+   LIGHT MODE - RELIABLE ATTRIBUTE SELECTORS
+   ============================================ */
+html.light {
+  --bg: #dde8dd;
+  --text-primary: #0a0a0a;
+  --border: rgba(0,0,0,0.09);
+  --accent-glow: rgba(74,222,128,0.25);
+}
+
+/* Page base */
+html.light body {
+  background-color: #dde8dd !important;
+  color: #0a0a0a !important;
+}
+
+html.light main {
+  background-color: #dde8dd !important;
+  background-image:
+    radial-gradient(ellipse 70% 55% at 15% 8%, rgba(74,222,128,0.13), transparent 55%),
+    radial-gradient(ellipse 55% 45% at 85% 92%, rgba(74,222,128,0.10), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(74,222,128,0.04), transparent 65%);
+}
+
+/* ---- Backgrounds ---- */
+/* Target ALL elements whose class contains "bg-black" (catches all opacity variants) */
+html.light [class*="bg-black"] {
+  background-color: #dde8dd !important;
+}
+/* Keep modal overlays dark so cert images remain readable */
+html.light .fixed[class*="bg-black"] {
+  background-color: rgba(8, 14, 8, 0.96) !important;
+}
+/* bg-[#050505] and bg-[#080808] variants */
+html.light [class*="bg-[#0"] {
+  background-color: #dde8dd !important;
+}
+/* Keep modal frame dark */
+html.light .fixed [class*="bg-[#0"] {
+  background-color: #0d150d !important;
+}
+
+/* bg-white/5, bg-white/10 etc -> use very subtle dark overlay */
+html.light [class*="bg-white/"]:not(.nav-burger-line) {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+/* ---- Text ---- */
+/* All text-white/* variants -> near-black */
+html.light [class*="text-white"] {
+  color: rgba(10, 10, 10, 0.85) !important;
+}
+/* But keep accent text intact */
+html.light [class*="text-[#4ade80]"],
+html.light [class*="text-[#4ade80]"],
+html.light .label-accent,
+html.light [class*="text-green"] {
+  color: #16a34a !important;
+}
+/* Keep white text inside dark modals — but NOT navbar elements */
+html.light .fixed [class*="text-white"]:not(.nav-logo):not(.nav-link):not(.nav-resume) {
+  color: #ffffff !important;
+}
+
+/* ---- Borders ---- */
+html.light [class*="border-white"] {
+  border-color: rgba(0, 0, 0, 0.10) !important;
+}
+html.light .fixed [class*="border-white"] {
+  border-color: rgba(255,255,255,0.12) !important;
+}
+
+/* ---- Gradient text (Hero name) ---- */
+html.light .name-gradient {
+  background-image: linear-gradient(to right, #0a0a0a 20%, #15803d 65%, #16a34a 100%) !important;
+}
+
+/* ---- Cursor — keep green ---- */
+html.light .cursor-dot {
+  background: var(--accent) !important;
+  box-shadow: 0 0 10px var(--accent-glow) !important;
+}
+html.light .cursor-ring {
+  border-color: rgba(74, 222, 128, 0.45) !important;
+}
+
+/* ---- About & Skills section backgrounds ---- */
+html.light .about-section,
+html.light .about-sticky {
+  background-color: #dde8dd !important;
+}
+
+/* ---- Skills TechPill cards ---- */
+html.light [class*="border-white/["] {
+  border-color: rgba(0,0,0,0.09) !important;
+}
+html.light [class*="bg-white/["] {
+  background-color: rgba(0,0,0,0.03) !important;
+}
+
+/* ---- TiltedRibbon — light frosted glass ---- */
+html.light [class*="from-black"][class*="via-black"] {
+  background: rgba(220, 235, 220, 0.82) !important;
+  backdrop-filter: blur(14px) !important;
+}
+/* Edge fades inside ribbon */
+html.light [class*="from-black"][class*="to-transparent"] {
+  background: linear-gradient(to right, #dde8dd, transparent) !important;
+}
+html.light [class*="from-black"][class*="to-transparent"]:last-child {
+  background: linear-gradient(to left, #dde8dd, transparent) !important;
+}
+/* Ribbon text */
+html.light [class*="from-black"][class*="via-black"] [class*="text-white"] {
+  color: #0a0a0a !important;
+}
+
+/* ---- Custom CSS class fixes ---- */
+html.light .glass {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.09);
+}
+html.light .glass-hover:hover {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(21, 128, 61, 0.3);
+}
+html.light .tech-tag {
+  color: rgba(0, 0, 0, 0.6);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+html.light .tech-tag:hover {
+  color: #15803d;
+  border-color: rgba(21, 128, 61, 0.4);
+}
+html.light .marquee-text {
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.12);
+}
+html.light .input-field {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #0a0a0a;
+}
+html.light .input-field::placeholder {
+  color: rgba(0, 0, 0, 0.35);
+}
+html.light .skill-icon-card {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.09);
+}
+html.light .skill-icon-card:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+html.light .skill-icon-label { color: rgba(0,0,0,0.6); }
+html.light .skill-icon-card:hover .skill-icon-label { color: #0a0a0a; }
+
+/* Scrollbar */
+html.light ::-webkit-scrollbar-track { background: #d0ddd0; }
+html.light ::-webkit-scrollbar-thumb { background: rgba(74, 222, 128, 0.4); }
+
+/* ---- Loader Background & Text Force-Dark ---- */
+html.light .loader-bg,
+.loader-bg {
+  background-color: #000000 !important;
+}
+html.light .loader-bg [class*="text-white"],
+html.light .loader-bg span,
+html.light .loader-bg p {
+  color: #ffffff !important;
+}
+
+/* ---- Navbar Light Mode Text Visibility Overrides ---- */
+html.light .nav-logo {
+  color: rgba(46, 56, 46, 0.45) !important;
+}
+html.light .nav-logo:hover {
+  color: rgba(46, 56, 46, 0.85) !important;
+}
+html.light .nav-link,
+html.light .nav-resume {
+  color: rgba(46, 56, 46, 0.4) !important;
+}
+html.light .nav-link:hover,
+html.light .nav-resume:hover {
+  color: rgba(46, 56, 46, 0.9) !important;
+}
+html.light .nav-burger-line {
+  background-color: rgba(46, 56, 46, 0.65) !important;
+}
+
+/* ============================================
+   VIEW TRANSITIONS (Circle Wipe Animation)
+   ============================================ */
+/* Disable default cross-fade so our JS clip-path animation works */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+/* New state always expands on top as an expanding circle */
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 9999; }
