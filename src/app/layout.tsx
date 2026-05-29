@@ -48,6 +48,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <head>
+        {/* Block-render: set theme class BEFORE first paint to prevent flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("theme");if(t==="light"){document.documentElement.classList.add("light")}else{document.documentElement.classList.remove("light")}}catch(e){}})();`,
+          }}
+        />
         <link rel="preload" href="/card.glb" as="fetch" crossOrigin="anonymous" />
         <link rel="preload" href="/parul-university-logo.png" as="image" />
         <link rel="preload" href="/lanyard-strap.png" as="image" />

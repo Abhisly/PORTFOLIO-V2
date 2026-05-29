@@ -572,20 +572,21 @@ html.light main {
 }
 
 /* ---- Backgrounds ---- */
-/* Target ALL elements whose class contains "bg-black" (catches all opacity variants) */
-html.light [class*="bg-black"] {
+/* Target ALL elements whose class contains "bg-black" (catches all opacity variants)
+   but EXCLUDE loader-bg so the loader always stays pure black */
+html.light [class*="bg-black"]:not(.loader-bg) {
   background-color: #dde8dd !important;
 }
 /* Keep modal overlays dark so cert images remain readable */
-html.light .fixed[class*="bg-black"] {
+html.light .fixed[class*="bg-black"]:not(.loader-bg) {
   background-color: rgba(8, 14, 8, 0.96) !important;
 }
 /* bg-[#050505] and bg-[#080808] variants */
-html.light [class*="bg-[#0"] {
+html.light [class*="bg-[#0"]:not(.loader-bg) {
   background-color: #dde8dd !important;
 }
 /* Keep modal frame dark */
-html.light .fixed [class*="bg-[#0"] {
+html.light .fixed [class*="bg-[#0"]:not(.loader-bg) {
   background-color: #0d150d !important;
 }
 
@@ -707,10 +708,14 @@ html.light ::-webkit-scrollbar-track { background: #d0ddd0; }
 html.light ::-webkit-scrollbar-thumb { background: rgba(74, 222, 128, 0.4); }
 
 /* ---- Loader Background & Text Force-Dark ---- */
-html.light .loader-bg,
-.loader-bg {
+/* The loader MUST ALWAYS be pure black regardless of theme */
+.loader-bg,
+html.light .loader-bg {
   background-color: #000000 !important;
+  color: #ffffff !important;
 }
+.loader-bg *,
+html.light .loader-bg *,
 html.light .loader-bg [class*="text-white"],
 html.light .loader-bg span,
 html.light .loader-bg p {
