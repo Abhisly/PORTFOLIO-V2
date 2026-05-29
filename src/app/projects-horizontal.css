@@ -289,6 +289,12 @@
   transform: translateX(3px);
 }
 
+.hp-project-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
 .hp-project-link.is-muted {
   opacity: 0.45;
   pointer-events: none;

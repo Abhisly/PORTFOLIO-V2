@@ -11,47 +11,51 @@ import { ArrowUpRight } from 'lucide-react'
 
 const projects = [
   {
-    title: 'AURA Intelligence',
-    headline: ['AURA', 'Intelligence'],
+    title: 'URL SYSTEM',
+    headline: ['URL', 'SYSTEM'],
     description:
-      'AI-powered cybersecurity with real-time threat detection and phishing classification.',
-    tags: ['Next.js', 'TypeScript', 'Ollama', 'AI/ML'],
+      'AI-powered cybersecurity platform for phishing URL, fake email, and scam detection with real-time threat scoring.',
+    tags: ['Next.js', 'TypeScript', 'Supabase', 'Ollama', 'Llama 3', 'OCR', 'Tailwind CSS'],
     year: '2025',
     category: 'Cybersecurity',
-    href: '#',
+    github: 'https://github.com/Abhisly/URL-SYSTEM',
+    live: 'https://url-system.vercel.app/',
     metric: 'Threat detection under 100ms',
   },
   {
-    title: 'Zero Waste Network',
-    headline: ['Zero Waste', 'Network'],
+    title: 'ZeroWaste',
+    headline: ['Zero', 'Waste'],
     description:
-      'Sustainability platform matching communities to redirect surplus food before it is wasted.',
-    tags: ['React', 'Node.js', 'MongoDB', 'Maps API'],
-    year: '2024',
+      'Smart food wastage protection & redistribution system connecting restaurants, NGOs, and delivery agents with real-time donation workflows.',
+    tags: ['React.js', 'Next.js', 'Node.js', 'MongoDB', 'MySQL', 'Tailwind CSS'],
+    year: '2026',
     category: 'Full Stack',
-    href: '#',
-    metric: '10k+ meals redirected',
+    github: 'https://github.com/Abhisly/ZeroWaste',
+    live: 'https://zero-waste-puce.vercel.app/',
+    metric: 'Real-time routing & workflows',
   },
   {
-    title: 'AI Chatbot Assistant',
-    headline: ['AI Chatbot', 'Assistant'],
+    title: 'AURA',
+    headline: ['AURA', 'Platform'],
     description:
-      'Conversational AI with memory persistence, context-aware replies, and a glass UI shell.',
-    tags: ['Python', 'Flask', 'React', 'NLP'],
-    year: '2024',
+      'Adaptive AI skill intelligence platform offering domain-specific MCQ assessments, learning roadmaps, and an AI mentor module.',
+    tags: ['React.js', 'TypeScript', 'Node.js', 'MongoDB', 'Tailwind CSS'],
+    year: '2025',
     category: 'Artificial Intelligence',
-    href: '#',
-    metric: '50-turn context retention',
+    github: 'https://github.com/Abhisly/AURA',
+    live: 'https://aura-five-omega.vercel.app/',
+    metric: 'Immersive 3D animated UI',
   },
   {
     title: 'Developer Portfolio',
     headline: ['Developer', 'Portfolio'],
     description:
-      'Cinematic scroll storytelling, custom cursor, WebGL accents, and a dark premium system.',
-    tags: ['Next.js', 'GSAP', 'Framer Motion', 'Three.js'],
-    year: '2025',
+      'Premium developer portfolio featuring immersive UI, smooth scroll-based animations, and cinematic transitions.',
+    tags: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'GSAP', 'Three.js', 'Lenis'],
+    year: '2026',
     category: 'Design Engineering',
-    href: '#',
+    github: 'https://github.com/Abhisly/PORTFOLIO-V2/',
+    live: 'https://portfolio-v2-eight-livid.vercel.app/',
     metric: 'Locked 60fps interactions',
   },
 ]
@@ -190,17 +194,32 @@ export default function Projects() {
 
                     <footer className="hp-project-foot">
                       <p className="hp-project-stack label-mono">{project.tags.join(' · ')}</p>
-                      {project.href !== '#' ? (
-                        <a href={project.href} className="hp-project-link label-mono" data-cursor>
-                          <span>View project</span>
-                          <ArrowUpRight size={15} strokeWidth={2} />
-                        </a>
-                      ) : (
-                        <span className="hp-project-link is-muted label-mono">
-                          <span>In archive</span>
-                          <ArrowUpRight size={15} strokeWidth={2} />
-                        </span>
-                      )}
+                      <div className="hp-project-links">
+                        {project.github && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hp-project-link label-mono"
+                            data-cursor
+                          >
+                            <span>GitHub</span>
+                            <ArrowUpRight size={15} strokeWidth={2} />
+                          </a>
+                        )}
+                        {project.live && (
+                          <a
+                            href={project.live}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hp-project-link label-mono"
+                            data-cursor
+                          >
+                            <span>Live Site</span>
+                            <ArrowUpRight size={15} strokeWidth={2} />
+                          </a>
+                        )}
+                      </div>
                     </footer>
                   </div>
                 </div>
@@ -213,7 +232,7 @@ export default function Projects() {
               <p className="label-mono text-white/30 mb-8">Archive end</p>
               <p className="hp-outro-line">More experiments live on GitHub.</p>
               <a
-                href="https://github.com/"
+                href="https://github.com/Abhisly"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hp-outro-link label-mono"
