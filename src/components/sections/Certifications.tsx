@@ -106,7 +106,7 @@ export default function Certifications() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={viewport}
         transition={{ delay: 0.1, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        className="heading-xl text-white tracking-normal"
+        className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight"
       >
         Selected{' '}
         <em

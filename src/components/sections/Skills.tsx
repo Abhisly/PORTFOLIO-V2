@@ -94,7 +94,7 @@ export default function Skills() {
     <section
       ref={sectionRef}
       id="skills"
-      className="relative py-28 sm:py-44 overflow-hidden bg-black border-y border-white/[0.04]"
+      className="relative py-[clamp(4rem,min(8vw,10vh),8rem)] overflow-hidden bg-black border-y border-white/[0.04]"
     >
       <div
         className="absolute inset-0 pointer-events-none opacity-70"
@@ -104,7 +104,7 @@ export default function Skills() {
         }}
       />
 
-      <div className="max-w-6xl mx-auto px-6 relative z-10 mb-20 sm:mb-24">
+      <div className="max-w-6xl mx-auto px-6 relative z-10 mb-12 sm:mb-16">
         <div className="text-center md:text-left">
           <motion.div
             variants={fadeUp}
@@ -134,7 +134,7 @@ export default function Skills() {
 
       {/* Spacious row gaps using space-y-16 sm:space-y-20 */}
       <div
-        className="relative w-full z-10 space-y-16 sm:space-y-20 select-none"
+        className="relative w-full z-10 space-y-[clamp(1.5rem,min(3vw,4vh),4rem)] select-none"
         style={{
           maskImage: 'linear-gradient(to right, transparent, black 11%, black 89%, transparent)',
           WebkitMaskImage: 'linear-gradient(to right, transparent, black 11%, black 89%, transparent)',
@@ -209,15 +209,15 @@ function TechPill({ name, index, rowIndex }: { name: string; index: number; rowI
 
   return (
     <div
-      className="group relative inline-flex h-24 sm:h-28 items-center gap-6 overflow-hidden rounded-full border border-white/[0.07] bg-white/[0.025] px-12 sm:px-14 transition-all duration-300 hover:border-[#4ade80]/40 hover:bg-[#4ade80]/[0.045] hover:shadow-[0_0_32px_rgba(74,222,128,0.08)]"
+      className="group relative inline-flex h-[clamp(3.5rem,min(8vw,8vh),6rem)] items-center gap-[clamp(1rem,min(2vw,2vh),1.5rem)] overflow-hidden rounded-full border border-white/[0.07] bg-white/[0.025] px-[clamp(1.5rem,min(4vw,4vh),3rem)] transition-all duration-300 hover:border-[#4ade80]/40 hover:bg-[#4ade80]/[0.045] hover:shadow-[0_0_32px_rgba(74,222,128,0.08)]"
       data-cursor
     >
       <span className="absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-[#4ade80]/45 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-      <span className="font-mono text-[0.95rem] sm:text-[1.05rem] text-white/28 transition-colors duration-300 group-hover:text-[#4ade80]/70">
+      <span className="font-mono text-[clamp(0.7rem,min(1.5vw,1.5vh),1.05rem)] text-white/28 transition-colors duration-300 group-hover:text-[#4ade80]/70">
         {formattedIndex}
       </span>
-      <span className="h-4 w-4 rounded-full bg-[#4ade80]/60 transition-all duration-300 group-hover:scale-125 group-hover:bg-[#4ade80]" />
-      <span className="font-mono text-[1.25rem] sm:text-[1.45rem] font-semibold uppercase tracking-[0.15em] text-white/58 transition-colors duration-300 group-hover:text-white">
+      <span className="h-[clamp(0.5rem,min(1vw,1vh),1rem)] w-[clamp(0.5rem,min(1vw,1vh),1rem)] rounded-full bg-[#4ade80]/60 transition-all duration-300 group-hover:scale-125 group-hover:bg-[#4ade80]" />
+      <span className="font-mono text-[clamp(0.9rem,min(2vw,2vh),1.5rem)] font-semibold uppercase tracking-[0.15em] text-white/58 transition-colors duration-300 group-hover:text-white">
         {name}
       </span>
     </div>

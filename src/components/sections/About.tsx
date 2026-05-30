@@ -61,8 +61,8 @@ export default function About() {
       id="about"
       className="relative h-[300vh] bg-black about-section"
     >
-      <div className="sticky top-0 h-screen overflow-hidden bg-black about-sticky">
-        <div className="w-full h-screen flex flex-col md:flex-row items-center justify-between px-6 md:px-16 lg:px-24 py-16 gap-12 relative z-10">
+      <div className="sticky top-0 h-screen overflow-hidden bg-black about-sticky" style={{ height: '100dvh' }}>
+        <div className="w-full h-full flex flex-col md:flex-row items-center justify-between px-6 md:px-16 lg:px-24 py-10 md:py-14 gap-8 md:gap-10 relative z-10">
           <div className="hidden md:block w-[30%] pt-2 sm:pt-4">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -74,7 +74,7 @@ export default function About() {
                 <div className="h-px w-8 bg-[#4ade80]" />
                 <span className="font-mono text-xs tracking-widest uppercase text-white/60">Introduction</span>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-white tracking-tight mt-2">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white tracking-tight mt-2">
                 About{' '}
                 <em className="font-light text-white/40" style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
                   Me
@@ -84,7 +84,7 @@ export default function About() {
           </div>
 
           <div className="w-full md:w-[65%] flex flex-col justify-center">
-            <p className="font-sans font-normal text-3xl md:text-4xl lg:text-[2.8rem] leading-[1.35] md:leading-[1.35] text-white tracking-tight flex flex-wrap gap-x-2 gap-y-4">
+            <p className="font-sans font-normal text-[clamp(1.25rem,min(3vw,4vh),2.2rem)] leading-[1.35] text-white tracking-tight flex flex-wrap gap-x-[1vw] gap-y-[1vh]">
               {words.map((word, index) => {
                 const start = (index / totalWords) * 0.82
                 const end = ((index + 1.4) / totalWords) * 0.82
