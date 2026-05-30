@@ -84,7 +84,7 @@ export default function About() {
           </div>
 
           <div className="w-full md:w-[65%] flex flex-col justify-center">
-            <p className="font-sans font-normal text-[clamp(1.25rem,min(3vw,4vh),2.2rem)] leading-[1.35] text-white tracking-tight flex flex-wrap gap-x-[1vw] gap-y-[1vh]">
+            <p className="font-sans font-normal text-[clamp(1.75rem,4vw,3.25rem)] leading-[1.35] text-white tracking-tight flex flex-wrap gap-x-[1.2vw] gap-y-[1.5vh]">
               {words.map((word, index) => {
                 const start = (index / totalWords) * 0.82
                 const end = ((index + 1.4) / totalWords) * 0.82
