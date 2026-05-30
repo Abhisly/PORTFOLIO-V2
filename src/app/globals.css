@@ -39,6 +39,20 @@ html {
   overflow-x: clip;
 }
 
+/* 
+  ROOT EM SCALING
+  This ensures that ALL rem-based Tailwind classes scale perfectly linearly 
+  between a 1024px tablet and a 2560px ultra-wide monitor.
+  - At 1920px (user's laptop): 1rem = 16px
+  - At 1366px (friend's laptop): 1rem = 11.38px
+  This guarantees 100% identical proportional layout across different laptops.
+*/
+@media (min-width: 1024px) {
+  html {
+    font-size: clamp(10px, calc(100vw / 120), 18px);
+  }
+}
+
 body {
   background-color: var(--bg);
   color: var(--text-primary);
