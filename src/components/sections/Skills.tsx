@@ -94,7 +94,7 @@ export default function Skills() {
     <section
       ref={sectionRef}
       id="skills"
-      className="relative py-[clamp(4rem,8vw,8rem)] overflow-hidden bg-black border-y border-white/[0.04]"
+      className="relative py-16 md:py-24 lg:py-32 overflow-hidden bg-black border-y border-white/[0.04]"
     >
       <div
         className="absolute inset-0 pointer-events-none opacity-70"
@@ -134,7 +134,7 @@ export default function Skills() {
 
       {/* Spacious row gaps using space-y-16 sm:space-y-20 */}
       <div
-        className="relative w-full z-10 space-y-[clamp(2.5rem,5vw,5rem)] select-none"
+        className="relative w-full z-10 space-y-8 md:space-y-12 lg:space-y-16 select-none"
         style={{
           maskImage: 'linear-gradient(to right, transparent, black 11%, black 89%, transparent)',
           WebkitMaskImage: 'linear-gradient(to right, transparent, black 11%, black 89%, transparent)',
@@ -209,15 +209,15 @@ function TechPill({ name, index, rowIndex }: { name: string; index: number; rowI
 
   return (
     <div
-      className="group relative inline-flex h-[clamp(4.5rem,8vw,7.5rem)] items-center gap-[clamp(1.5rem,3vw,2.5rem)] overflow-hidden rounded-full border border-white/[0.07] bg-white/[0.025] px-[clamp(2rem,5vw,4rem)] transition-all duration-300 hover:border-[#4ade80]/40 hover:bg-[#4ade80]/[0.045] hover:shadow-[0_0_32px_rgba(74,222,128,0.08)]"
+      className="group relative inline-flex h-12 md:h-14 lg:h-16 items-center gap-3 md:gap-4 lg:gap-5 overflow-hidden rounded-full border border-white/[0.07] bg-white/[0.025] px-6 md:px-8 lg:px-10 transition-all duration-300 hover:border-[#4ade80]/40 hover:bg-[#4ade80]/[0.045] hover:shadow-[0_0_32px_rgba(74,222,128,0.08)]"
       data-cursor
     >
       <span className="absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-[#4ade80]/45 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-      <span className="font-mono text-[clamp(0.85rem,1.8vw,1.35rem)] text-white/28 transition-colors duration-300 group-hover:text-[#4ade80]/70">
+      <span className="font-mono text-xs md:text-sm text-white/28 transition-colors duration-300 group-hover:text-[#4ade80]/70">
         {formattedIndex}
       </span>
-      <span className="h-[clamp(0.6rem,1.2vw,1.2rem)] w-[clamp(0.6rem,1.2vw,1.2rem)] rounded-full bg-[#4ade80]/60 transition-all duration-300 group-hover:scale-125 group-hover:bg-[#4ade80]" />
-      <span className="font-mono text-[clamp(1.1rem,2.5vw,1.85rem)] font-semibold uppercase tracking-[0.15em] text-white/58 transition-colors duration-300 group-hover:text-white">
+      <span className="h-1.5 w-1.5 md:h-2 md:w-2 rounded-full bg-[#4ade80]/60 transition-all duration-300 group-hover:scale-125 group-hover:bg-[#4ade80]" />
+      <span className="font-mono text-sm md:text-base lg:text-lg font-semibold uppercase tracking-[0.15em] text-white/58 transition-colors duration-300 group-hover:text-white">
         {name}
       </span>
     </div>
