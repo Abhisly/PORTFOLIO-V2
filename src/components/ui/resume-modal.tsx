@@ -55,8 +55,8 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
 
             <div className="flex items-center gap-4 pointer-events-auto">
               <a
-                href="/resume.pdf"
-                download="Abhi_Venkat_Sai_Resume.pdf"
+                href="/ABHII%20RESUMEE.pdf"
+                download="ABHII RESUMEE.pdf"
                 className="btn-accent py-2 px-4 text-[0.65rem] !gap-2"
                 data-cursor
               >
@@ -103,7 +103,7 @@ export function ResumeModal({ isOpen, onClose }: ResumeModalProps) {
               </AnimatePresence>
               
               <iframe
-                src="/resume.pdf#view=Fit&toolbar=0&navpanes=0&scrollbar=0"
+                src="/ABHII%20RESUMEE.pdf#view=Fit&toolbar=0&navpanes=0&scrollbar=0"
                 className="w-full h-full border-none z-10 transition-opacity duration-700 ease-in-out"
                 style={{ opacity: isLoading ? 0 : 1 }}
                 onLoad={() => setIsLoading(false)}

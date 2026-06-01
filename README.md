@@ -102,6 +102,6 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to view the 
 
 **Abhi Venkat Sai**
 - **Email:** [Abhixsly.pro@gmail.com](mailto:Abhixsly.pro@gmail.com)
-- **LinkedIn:** [linkedin.com/in/abhi-venkat-sai](https://linkedin.com/in/abhi-venkat-sai)
+- **LinkedIn:** [linkedin.com/in/abhisly](https://www.linkedin.com/in/abhisly)
 - **GitHub:** [@Abhisly](https://github.com/Abhisly)
 - **LeetCode:** [@9ZmqAzoUJT](https://leetcode.com/u/9ZmqAzoUJT/)
