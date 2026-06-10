@@ -50,9 +50,22 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.classList.add('overflow-hidden')
+    } else {
+      document.body.classList.remove('overflow-hidden')
+    }
+    return () => {
+      document.body.classList.remove('overflow-hidden')
+    }
+  }, [menuOpen])
+
   const scrollTo = (href: string) => {
     const id = href.replace('#', '')
-    const el = document.getElementById(id)
+    const targetId = (id === 'projects' && window.innerWidth < 768) ? 'projects-mobile' : id
+    const el = document.getElementById(targetId)
     if (el) el.scrollIntoView({ behavior: 'smooth' })
     setMenuOpen(false)
   }
@@ -107,12 +120,18 @@ export default function Navbar() {
           aria-label="Toggle menu"
         >
           <motion.span
-            animate={{ rotate: menuOpen ? 45 : 0, y: menuOpen ? 7 : 0 }}
+            animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+            transition={{ duration: 0.2 }}
             className="block w-5 h-px bg-white/60 origin-center nav-burger-line"
           />
-          <motion.span animate={{ opacity: menuOpen ? 0 : 1 }} className="block w-5 h-px bg-white/60 nav-burger-line" />
+          <motion.span 
+            animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
+            transition={{ duration: 0.2 }}
+            className="block w-5 h-px bg-white/60 nav-burger-line" 
+          />
           <motion.span
-            animate={{ rotate: menuOpen ? -45 : 0, y: menuOpen ? -7 : 0 }}
+            animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+            transition={{ duration: 0.2 }}
             className="block w-5 h-px bg-white/60 origin-center nav-burger-line"
           />
         </button>
@@ -159,7 +178,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 bg-[#050505]/98 backdrop-blur-2xl flex flex-col items-center justify-center gap-10"
+            className="fixed inset-0 z-[9999] bg-[#050505]/98 backdrop-blur-2xl flex flex-col items-center justify-center gap-10"
           >
             {navLinks.map((link, i) => (
               <motion.button
@@ -178,7 +197,10 @@ export default function Navbar() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.36 }}
-              onClick={() => setIsResumeModalOpen(true)}
+              onClick={() => {
+                setIsResumeModalOpen(true)
+                setMenuOpen(false)
+              }}
               className="btn-accent"
             >
               View Resume
@@ -198,3 +220,4 @@ export default function Navbar() {
     </>
   )
 }
+

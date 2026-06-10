@@ -86,6 +86,8 @@ const techLogos = [
   { node: <SiFramer />, title: 'Framer Motion', href: 'https://www.framer.com/motion/' },
 ]
 
+
+
 export default function Skills() {
   const sectionRef = useRef<HTMLElement>(null)
   const { scrollY } = useScroll()
@@ -132,9 +134,9 @@ export default function Skills() {
         </div>
       </div>
 
-      {/* Spacious row gaps using space-y-16 sm:space-y-20 */}
+      {/* Animated ticker rows (Mobile & Desktop) */}
       <div
-        className="relative w-full z-10 space-y-8 md:space-y-12 lg:space-y-16 select-none"
+        className="relative w-full z-10 space-y-6 md:space-y-12 lg:space-y-16 select-none"
         style={{
           maskImage: 'linear-gradient(to right, transparent, black 11%, black 89%, transparent)',
           WebkitMaskImage: 'linear-gradient(to right, transparent, black 11%, black 89%, transparent)',
@@ -144,13 +146,13 @@ export default function Skills() {
           <TechTicker key={rowIndex} {...row} rowIndex={rowIndex} scrollY={scrollY} />
         ))}
 
-        <div className="pt-4">
+        <div className="pt-4 md:pt-4">
           <LogoLoop
             logos={techLogos}
             speed={60}
             direction="left"
-            logoHeight={42}
-            gap={64}
+            logoHeight={32}
+            gap={48}
             hoverSpeed={0}
             scaleOnHover
             ariaLabel="Technology Logo Loop"
@@ -175,9 +177,6 @@ function TechTicker({
   const triplicatedItems = [...items, ...items, ...items]
   const time = useTime()
 
-  // Slower movement values:
-  // Base speed: t * 0.0002% per millisecond (exceptionally slow background loop)
-  // Scroll velocity speed: y * 0.0015% per pixel scrolled (extremely subtle and smooth parallax shift)
   const x = useTransform([time, scrollY], ([latestTime, latestScrollY]: number[]) => {
     const t = Number(latestTime)
     const y = Number(latestScrollY)
@@ -194,7 +193,6 @@ function TechTicker({
 
   return (
     <div className="w-full overflow-hidden whitespace-nowrap">
-      {/* Gap between elements is increased to gap-10 for breathing room */}
       <motion.div className="w-max flex gap-10 pr-10" style={{ x, willChange: 'transform' }}>
         {triplicatedItems.map((tech, idx) => (
           <TechPill key={`${tech}-${idx}`} name={tech} index={(idx % items.length) + 1} rowIndex={rowIndex} />

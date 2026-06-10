@@ -9,10 +9,13 @@ import React, {
   ReactNode,
   Ref,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
 } from 'react';
+
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -36,7 +39,7 @@ function useMergeRefs<T>(...refs: (Ref<T> | undefined)[]) {
 function useResponsiveValue(baseValue: number, mobileValue: number) {
   const [value, setValue] = useState(baseValue);
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (typeof window === 'undefined') return;
 
     const handleResize = () => {
@@ -143,6 +146,8 @@ export const RadialScrollGallery = forwardRef<
     const circleDiameter = currentRadius * 2;
     const wheelOffset = useResponsiveValue(65, 20);
 
+
+
     const { visibleDecimal, hiddenDecimal } = useMemo(() => {
       const clamped = Math.max(10, Math.min(100, visiblePercentage));
       const v = clamped / 100;
@@ -188,7 +193,7 @@ export const RadialScrollGallery = forwardRef<
 
     useGSAP(
       () => {
-        if (!pinRef.current || !containerRef.current || childrenCount === 0)
+        if (!pinRef.current || !containerRef.current || childrenCount === 0 || !isMounted)
           return;
 
         const prefersReducedMotion = window.matchMedia(
@@ -246,6 +251,7 @@ export const RadialScrollGallery = forwardRef<
           currentRadius,
           startTrigger,
           childrenCount,
+          isMounted,
         ],
       }
     );

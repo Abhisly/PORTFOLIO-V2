@@ -59,11 +59,12 @@ export default function About() {
     <section
       ref={containerRef}
       id="about"
-      className="relative h-[300vh] bg-black about-section"
+      className="relative h-auto md:h-[300vh] bg-black about-section"
     >
-      <div className="sticky top-0 h-screen overflow-hidden bg-black about-sticky" style={{ height: '100dvh' }}>
+      {/* Desktop sticky scroll-reveal version */}
+      <div className="hidden md:block sticky top-0 h-screen overflow-hidden bg-black about-sticky" style={{ height: '100dvh' }}>
         <div className="w-full h-full flex flex-col md:flex-row items-center justify-between px-6 md:px-16 lg:px-24 py-10 md:py-14 gap-8 md:gap-10 relative z-10">
-          <div className="hidden md:block w-[30%] pt-2 sm:pt-4">
+          <div className="w-[30%] pt-2 sm:pt-4">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -105,6 +106,42 @@ export default function About() {
               })}
             </p>
           </div>
+        </div>
+      </div>
+
+      {/* Mobile static text version */}
+      <div className="block md:hidden py-16 px-6 sm:px-10 relative z-10 bg-black">
+        <div className="max-w-[650px] mx-auto flex flex-col items-start gap-8">
+          <div>
+            <div className="inline-flex items-center gap-3 mb-3">
+              <div className="h-px w-8 bg-[#4ade80]" />
+              <span className="font-mono text-xs tracking-widest uppercase text-white/60">Introduction</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white tracking-tight mt-2">
+              About{' '}
+              <em className="font-light text-white/40" style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic' }}>
+                Me
+              </em>
+            </h2>
+          </div>
+
+          <p className="font-sans font-normal text-xl sm:text-2xl leading-[1.4] text-white tracking-tight flex flex-wrap gap-x-3 gap-y-2 text-left">
+            {words.map((word, index) => {
+              const isTech = techTerms.some(term => cleanWord(word).toLowerCase() === cleanWord(term).toLowerCase())
+              return (
+                <span
+                  key={index}
+                  className="inline-block"
+                  style={{
+                    color: isTech ? '#4ade80' : '#ffffff',
+                    textShadow: isTech ? '0 0 12px rgba(74,222,128,0.3)' : 'none'
+                  }}
+                >
+                  {word}
+                </span>
+              )
+            })}
+          </p>
         </div>
       </div>
     </section>

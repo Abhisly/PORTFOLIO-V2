@@ -1,0 +1,125 @@
+# THE ULTIMATE CREATIVE DEVELOPER PORTFOLIO GENERATION PROMPT
+
+## High-Level Goal
+Create a hyper-premium, ultra-modern, and immersive 3D/WebGL developer portfolio using Next.js (App Router), React 19, Tailwind CSS, Three.js (React Three Fiber/Drei), GSAP, and Framer Motion. The portfolio must deliver a state-of-the-art interactive experience, maintaining locked 60fps performance while featuring fluid physics-based interactions, smooth transitions, and a dark, futuristic design system.
+
+---
+
+## 1. TECH STACK & DEPENDENCIES
+
+Initialize the project with the following core technology stack:
+*   **Framework**: Next.js 15+ (App Router, TypeScript, React 19)
+*   **Styling**: Tailwind CSS + Custom CSS Variables for global fluid typography (`clamp()`)
+*   **3D/WebGL Engine**: Three.js, `@react-three/fiber`, `@react-three/drei`, and `@react-three/rapier` (physics)
+*   **Animations**: GSAP (GreenSock) with `ScrollTrigger` and `Flip` + Framer Motion (for layout and micro-interactions)
+*   **Smooth Scroll**: Lenis (React-Lenis wrapper) for fluid scroll physics
+*   **Icons**: `lucide-react` & `react-icons`
+
+---
+
+## 2. SYSTEM ARCHITECTURE & DIRECTORY STRUCTURE
+
+Structure the project cleanly to separate components, UI systems, and 3D scenes:
+
+```text
+/
+├── public/                  # Assets (3D Models, static textures, SVGs)
+├── src/
+│   ├── app/
+│   │   ├── globals.css      # Core tokens, clamp-based text scales, resets
+│   │   ├── layout.tsx       # Root layout, Lenis provider, Custom Cursor Wrapper
+│   │   └── page.tsx         # Main entry point importing layout sections
+│   ├── components/
+│   │   ├── ui/              # Reusable interactive atomic components
+│   │   │   ├── Canvas3D.tsx # Centrally managed R3F Canvas with Suspense
+│   │   │   ├── CustomCursor.tsx
+│   │   │   ├── InteractiveBadge.tsx
+│   │   │   └── GlassCard.tsx
+│   │   ├── sections/        # Section-specific components
+│   │   │   ├── Hero.tsx     # Hero with WebGL background + interactive 3D elements
+│   │   │   ├── About.tsx    # Scroll-revealed text section
+│   │   │   ├── Projects.tsx # Horizontal sliding project showcase
+│   │   │   ├── Experience.tsx # Visual node-link career timeline
+│   │   │   ├── Skills.tsx   # Interactive force-directed skill network
+│   │   │   └── Contact.tsx  # Interactive contact form + footer
+│   ├── lib/
+│   │   ├── shaders/         # Custom GLSL vertex and fragment shaders
+│   │   └── utils.ts         # Utility functions (cn class merging)
+│   └── types/               # TypeScript declarations
+```
+
+---
+
+## 3. DESIGN PHILOSOPHY & AESTHETICS
+
+### Color Palette (Futuristic Dark Mode)
+*   **Background**: Deep pitch black (`#050505`) transitioning to custom dark grays.
+*   **Accent Color**: Vibrant Emerald/Neon Green (`#4ade80` / `rgba(74, 222, 128, 1)`) with soft, high-diffusion glow effects.
+*   **Secondary Elements**: Frosted translucent glass panels (`rgba(255, 255, 255, 0.03)`) with fine borders (`rgba(255, 255, 255, 0.08)`).
+*   **Contrast**: Stark white headers, paired with muted text (`rgba(255,255,255,0.4)`) to establish visual hierarchy.
+
+### Typography
+*   **Primary Headings**: High-impact sans-serif font (e.g., 'Inter' or 'Outfit') with tight line-height (`0.9x`) and negative letter-spacing (`-0.04em`).
+*   **Body Copy**: Clean sans-serif with comfortable line height (`1.75`).
+*   **Labels & Accents**: Monospaced typography for a technical, terminal-like feel (e.g., 'Fira Code' or 'SF Mono').
+*   **Fluid Typography Rule**: Use CSS `clamp()` variables based on viewport widths, ensuring layout proportions match on screens ranging from 13-inch laptops to ultrawide 4K monitors.
+
+### Interactive Micro-Animations
+*   **Custom Magnetic Cursor**: A small center dot surrounded by a trailing outer ring that morphs, scales, and warps when hovering over clickable elements.
+*   **Glassmorphism**: Backdrop blur-heavy interfaces (`backdrop-blur-md`) that smoothly blend with active 3D backgrounds.
+
+---
+
+## 4. COMPONENT SPECIFICATIONS
+
+### A. Global Scroll & Navigation
+*   **Smooth Scroll**: Implement Lenis scroll management to synchronize CSS horizontal scroll tracks, 3D rotations, and camera transitions.
+*   **Dynamic Theme & Background**: Maintain dark mode by default, utilizing subtle green/mint-themed gradient orbs that slowly float in the background using CSS animations or WebGL shaders.
+
+### B. Preloader Screen
+*   A sleek terminal-style preloader animating from `0%` to `100%`. Monitor assets loading (like 3D models and textures) and animate the loader away using a circle-wipe SVG clip path (`clip-path: circle()`) that expands from the user's cursor position.
+
+### C. Hero Section (3D Lanyard & Physics)
+*   **The Scene**: Integrate an interactive React Three Fiber canvas.
+*   **3D Interactive Badge**: Implement a dynamic, floating 3D lanyard/ID badge containing a mock developer profile.
+*   **Physics simulation**: Utilize `@react-three/rapier` to simulate gravity, wind resistance, and tension on a flexible strap (`MeshLine`). The user should be able to click, grab, throw, and swing the card around the screen.
+*   **Left-Aligned Text**: Clean, massive title texts (e.g., "CREATIVE / DEVELOPER") animating in with character-level opacity triggers using Framer Motion.
+
+### D. About Section (Scroll Reveal)
+*   **Text Reveal**: Split the about description paragraph into individual words or characters. As the user scrolls vertically, fade in and light up each word consecutively from top-to-bottom.
+*   **Special Terms**: Highlight specific technologies (e.g., React, TypeScript) by changing their color to the neon green accent with a text-glow shadow effect as they light up.
+
+### E. Projects Section (Horizontal Scroll Panel)
+*   **Scrolling Workflow**: Pin the section scroll track and translate the vertical scroll distance into a smooth horizontal slider using Framer Motion `useTransform` and `scrollYProgress`.
+*   **Interactive Cards**: Instead of simple grids, render large horizontal project layouts. Each card features a watermark index number, clear metadata list (Year, Category, Metric), and dynamic link buttons that animate on hover.
+
+### F. Certifications (Radial Scroll Gallery)
+*   **The Wheel Layout**: Arrange achievement cards in a massive 3D wheel path or a radial scroll layout.
+*   **Motion**: As the user scrolls, rotate the wheel. Bring the center card forward (z-index / scaling) and blur the surrounding cards.
+*   **Lightbox**: Allow the user to click any certificate card to open a full-screen, high-fidelity lightbox preview with smooth transitions, arrow-key navigation, and an image overlay containing verified credential badges.
+
+### G. Skills Section (Interactive Tech Tickers & Logo Loop)
+*   **Dual Motion Tickers**: Implement multi-row horizontal marquee tickers that move in alternating directions.
+*   **Scroll Interactivity**: Speed up or slow down the marquee movement based on the user's scroll speed, using GSAP or Framer Motion hooks.
+*   **Logo Loop**: A continuous, high-performance horizontal loop of tech logos that scale up, glow, and change colors when hovered over.
+
+### H. Contact & Footer (Cinematic Exit)
+*   **Typography**: Giant display headers (e.g., "LET'S CREATE") animating on viewport entry.
+*   **Availability Badge**: Live status indicator (e.g., "Availability: [Year]_Open_Source").
+*   **Translucent Layout**: Columns dividing direct email links and social networks, terminating in a clean footer containing back-to-top button behaviors.
+
+---
+
+## 5. PERFORMANCE, SEO & EXTRA GUIDELINES
+
+1.  **Strict Performance Optimization**:
+    *   Initialize React Three Fiber loaders inside a custom `Suspense` fallback.
+    *   Preload static glb models and texture files.
+    *   Utilize `will-change` CSS properties on high-frequency translated containers to delegate rendering workload to the GPU.
+2.  **No Placeholders**: Include full placeholder images and visual designs that align with clean web standards (no broken layouts).
+3.  **Semantic HTML & Accessibility**:
+    *   Follow strict HTML5 tags (`<main>`, `<section>`, `<article>`, `<header>`, `<footer>`, `<dl>`, `<dt>`, `<dd>`).
+    *   Ensure all buttons have descriptive labels.
+    *   Provide fallbacks for users on devices that do not support WebGL/Three.js.
+4.  **No Personal Information**:
+    *   Maintain configurations utilizing a custom static configuration file or JSON schema where the developer's name, email, socials, list of projects, and achievements can be injected dynamically.

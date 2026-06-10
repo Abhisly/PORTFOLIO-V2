@@ -5,7 +5,7 @@ import { fadeUp, viewport } from '@/lib/animations'
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative py-32 px-6 overflow-hidden">
+    <section id="experience" className="relative py-16 md:py-32 px-6 overflow-hidden">
       <div className="max-w-5xl mx-auto">
         {/* Label */}
         <motion.div
@@ -60,7 +60,7 @@ export default function Experience() {
 
             {/* Card */}
             <div
-              className="rounded-xl p-7 border transition-all duration-300"
+              className="rounded-xl p-5 sm:p-7 border transition-all duration-300"
               style={{ background: 'var(--bg-card)', borderColor: 'var(--border)' }}
             >
               <div className="flex flex-wrap items-start justify-between gap-4 mb-5">

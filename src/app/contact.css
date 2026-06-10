@@ -211,6 +211,64 @@
   }
 }
 
+@media (max-width: 767px) {
+  .contact-section {
+    padding: clamp(3.5rem, 8vh, 5rem) 1.5rem;
+  }
+  
+  .contact-title {
+    font-size: clamp(3.5rem, 14vw, 5rem);
+    letter-spacing: -0.06em;
+  }
+
+  .contact-availability {
+    margin-top: 2rem;
+  }
+
+  .contact-email {
+    font-size: clamp(1.25rem, 6.5vw, 2rem);
+    letter-spacing: -0.04em;
+  }
+
+  .contact-social-link {
+    font-size: clamp(1.4rem, 6vw, 2rem);
+    padding: 1rem 0;
+  }
+
+  .contact-columns {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    gap: 3rem;
+  }
+
+  .contact-col-kicker {
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.15em;
+  }
+
+  .contact-footer {
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    gap: 1.75rem;
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .contact-footer-top,
+  .contact-footer-resume {
+    justify-self: center;
+    font-size: 0.8rem;
+    padding: 0.5rem 0;
+  }
+
+  .contact-footer-name {
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    margin-top: 0.5rem;
+  }
+}
+
 @media (min-width: 901px) {
   .contact-email {
     font-size: 2.75rem;

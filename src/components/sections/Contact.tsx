@@ -7,9 +7,9 @@ import { blurIn, fadeUp, viewport } from '@/lib/animations'
 const EMAIL = 'Abhixsly.pro@gmail.com'
 
 const socialLinks = [
-  { label: 'Github', href: 'https://github.com/Abhisly' },
-  { label: 'Linkedin', href: 'https://www.linkedin.com/in/abhisly' },
-  { label: 'Leetcode', href: 'https://leetcode.com/u/9ZmqAzoUJT/' },
+  { label: 'GitHub', href: 'https://github.com/Abhisly' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/abhisly' },
+  { label: 'LeetCode', href: 'https://leetcode.com/u/9ZmqAzoUJT/' },
   { label: 'Portfolio', href: 'https://portfolio-nu-sage-28.vercel.app/' },
 ]
 

@@ -19,8 +19,8 @@ export default function Hero({ loaded = true }: { loaded?: boolean }) {
 
       {/* Text content — rendered FIRST so it's below lanyard in stacking order */}
       <div className="relative z-10 w-full max-w-[1500px] mx-auto px-6 sm:px-10 lg:px-16 flex flex-col lg:flex-row justify-center lg:items-center gap-10 pointer-events-none">
-        <div className="w-full lg:w-[50%] flex flex-col justify-center items-start z-10 pointer-events-auto">
-          <div className="w-full text-left mb-7 select-none">
+        <div className="w-full lg:w-[50%] flex flex-col justify-center items-center lg:items-start text-center lg:text-left z-10 pointer-events-auto">
+          <div className="w-full text-center lg:text-left mb-7 select-none">
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={loaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
@@ -36,10 +36,10 @@ export default function Hero({ loaded = true }: { loaded?: boolean }) {
               transition={{ duration: 1.0, ease: [0.22, 1, 0.36, 1], delay: loaded ? 0.15 : 0 }}
               className="mt-4 leading-[0.92] font-black uppercase font-sans tracking-[-0.05em] text-white"
             >
-              <span className="block text-[16vw] sm:text-[11.5vw] lg:text-[6.3vw] xl:text-[5.9vw]">
+              <span className="block text-[clamp(2.5rem,13vw,6.5rem)] lg:text-[6.3vw] xl:text-[5.9vw]">
                 Abhi
               </span>
-              <span className="block text-[16vw] sm:text-[11.5vw] lg:text-[6.3vw] xl:text-[5.9vw] text-transparent bg-clip-text bg-gradient-to-r from-white via-[#c7f9d6] to-[#4ade80] name-gradient">
+              <span className="block text-[clamp(2.5rem,13vw,6.5rem)] lg:text-[6.3vw] xl:text-[5.9vw] text-transparent bg-clip-text bg-gradient-to-r from-white via-[#c7f9d6] to-[#4ade80] name-gradient">
                 Venkat Sai
               </span>
             </motion.h1>
@@ -49,7 +49,7 @@ export default function Hero({ loaded = true }: { loaded?: boolean }) {
             initial={{ opacity: 0, y: 10 }}
             animate={loaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
             transition={{ delay: loaded ? 0.4 : 0, duration: 0.8 }}
-            className="text-white/45 label-mono text-xs md:text-sm uppercase text-left"
+            className="text-white/45 label-mono text-xs md:text-sm uppercase text-center lg:text-left"
           >
             Software Engineer &amp; Full Stack Architect
           </motion.p>
@@ -58,7 +58,7 @@ export default function Hero({ loaded = true }: { loaded?: boolean }) {
             initial={{ opacity: 0, scaleX: 0 }}
             animate={loaded ? { opacity: 1, scaleX: 1 } : { opacity: 0, scaleX: 0 }}
             transition={{ delay: loaded ? 0.6 : 0, duration: 0.8, ease: 'easeOut' }}
-            className="mt-6 w-full max-w-[520px] origin-left"
+            className="mt-6 w-full max-w-[520px] flex justify-center lg:justify-start origin-center lg:origin-left"
           >
             <div className="h-px w-24 bg-[#4ade80]/70 shadow-[0_0_18px_rgba(74,222,128,0.25)]" />
           </motion.div>

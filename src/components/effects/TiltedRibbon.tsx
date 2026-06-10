@@ -88,7 +88,7 @@ export default function TiltedRibbon() {
         y,
         opacity,
       }}
-      className="fixed top-0 left-[-20vw] w-[140vw] z-[5] pointer-events-none overflow-hidden select-none origin-center -translate-y-1/2"
+      className="hidden md:block fixed top-0 left-[-20vw] w-[140vw] z-[5] pointer-events-none overflow-hidden select-none origin-center -translate-y-1/2"
     >
       <div className="relative w-full bg-gradient-to-r from-black/60 via-black/95 to-black/60 backdrop-blur-[14px] border-y border-[#4ade80]/30 py-9 md:py-12 shadow-2xl shadow-black/95">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_600px_at_50%_50%,rgba(74,222,128,0.12),transparent_65%)] opacity-45" />
